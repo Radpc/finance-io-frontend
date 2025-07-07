@@ -1,0 +1,26 @@
+@use 'src/scss/colors' as colors;
+
+@mixin table-inner-padding($padding) {
+  thead > tr > th,
+  tbody > tr > td {
+    &:first-child {
+      padding-left: $padding;
+    }
+
+    &:last-child {
+      padding-right: $padding;
+    }
+  }
+
+  & + footer {
+    padding: 1rem $padding;
+  }
+}
+
+@mixin border-solid($position: '') {
+  @if $position == '' {
+    border: 1px solid colors.$neutral-4;
+  } @else {
+    border-#{$position}: 1px solid colors.$neutral-4;
+  }
+}

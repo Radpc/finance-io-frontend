@@ -1,0 +1,24 @@
+// Reset
+@import '/src/scss/reset';
+
+// Font
+@import '/src/assets/fonts/montserrat/font.css';
+
+// Style Guide
+@import './styleGuide';
+
+// Defaults
+@import './defaults';
+
+body {
+  height: 100vh;
+  &:has(#root .component.modal) {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #root {
+    height: auto;
+  }
+}

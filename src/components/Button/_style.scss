@@ -1,0 +1,112 @@
+@use 'src/scss/colors' as colors;
+@use 'src/scss/global';
+
+$primary: colors.$primary-1;
+$primary-hovered: colors.$secondary-4;
+$primary-clicked: colors.$secondary-8;
+$secondary: colors.$secondary-1;
+$tertiary: colors.$neutral-5;
+$warning: colors.$secondary-2;
+
+.component-button {
+  @extend .hoverable;
+
+  cursor: pointer;
+  user-select: none;
+
+  border: 1px solid transparent;
+  padding: 0.5rem 1.3rem;
+  border-radius: 0.5rem;
+  transition: 0.1s transform ease-in-out, 0.1s opacity ease-in-out;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.component-button.primary {
+  background-color: $primary;
+  color: $primary;
+  border-color: $primary;
+
+  &:hover {
+    background-color: $primary-hovered;
+  }
+
+  &:active {
+    background-color: $primary-clicked;
+  }
+
+  &.svg-path-filled {
+    svg {
+      path {
+        fill: $primary;
+      }
+    }
+  }
+}
+
+.component-button.secondary {
+  background-color: transparent;
+  color: $primary;
+  border-color: $primary;
+
+  &.svg-path-filled {
+    svg {
+      path {
+        fill: $primary;
+      }
+    }
+  }
+}
+
+.component-button.tertiary {
+  background-color: $tertiary;
+  color: $tertiary;
+  border-color: $tertiary;
+
+  &.svg-path-filled {
+    svg {
+      path {
+        fill: $tertiary;
+      }
+    }
+  }
+}
+
+.component-button.warning {
+  background-color: $warning;
+  color: $warning;
+  border-color: $warning;
+
+  &.svg-path-filled {
+    svg {
+      path {
+        fill: $warning;
+      }
+    }
+  }
+}
+
+.component-button.outlined {
+  background: transparent;
+
+  &:hover,
+  &:active {
+    background-color: transparent;
+  }
+}
+
+.component-button:not(.outlined) {
+  border-color: transparent;
+  color: colors.$neutral-1;
+
+  &.svg-path-filled {
+    svg {
+      path {
+        fill: colors.$neutral-4;
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+@use 'src/scss/colors' as colors;
+@use 'src/scss/variables' as variables;
+
+$slide-time: 0.2s;
+$modal-padding: variables.$modal-padding;
+
+.component.modal {
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(colors.$neutral-6, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &.side {
+    .default-modal {
+      background: colors.$neutral-1;
+      min-width: 10rem;
+      overflow: auto;
+      padding: $modal-padding;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+      box-shadow: -0.5rem 0.5rem 1rem 0.2rem rgba(colors.$neutral-7, 0.2);
+      right: 0;
+      top: 0;
+      bottom: 0;
+      position: absolute;
+    }
+  }
+
+  &:not(.side) {
+    .default-modal {
+      background: colors.$neutral-1;
+      min-width: 10rem;
+      overflow: auto;
+      padding: $modal-padding;
+      border-radius: 12px;
+      box-shadow: 0.5rem 0.5rem 1rem 0.2rem rgba(colors.$neutral-7, 0.2);
+
+      &.default-header {
+        > header {
+          margin-inline: -($modal-padding);
+          padding-inline: $modal-padding;
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid colors.$neutral-3;
+          padding-bottom: 0.7rem;
+          align-items: center;
+
+          h1 {
+            font-size: 1.1rem;
+            color: colors.$primary-2;
+          }
+
+          > svg.close {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.default-footer {
+        > footer {
+          margin-inline: -($modal-padding);
+          margin-bottom: -($modal-padding);
+          padding-inline: $modal-padding;
+          padding-block: $modal-padding;
+
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          justify-content: space-between;
+          background: colors.$neutral-9;
+        }
+      }
+    }
+  }
+}
+
+.component.modal.modal-animation-enter,
+.component.modal.modal-animation-exit-active {
+  background-color: rgba(colors.$neutral-6, 0);
+
+  &.side {
+    .modal-structure {
+      transform: translateX(100%);
+    }
+  }
+
+  &:not(.side) {
+    .modal-structure {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+  }
+}
+
+.component.modal.modal-animation-enter-active,
+.component.modal.modal-animation-exit {
+  background-color: rgba(colors.$neutral-6, 0.3);
+  transition: $slide-time background-color ease-in-out;
+
+  &.side {
+    .modal-structure {
+      transition: $slide-time transform ease-in-out;
+      transform: translateX(0);
+    }
+  }
+
+  &:not(.side) {
+    .modal-structure {
+      opacity: 1;
+      transform: scale(1);
+      transition: $slide-time transform ease-in-out, $slide-time opacity ease-in-out;
+    }
+  }
+}
+
+.component.modal.modal-animation-exit-active {
+  background-color: rgba(colors.$neutral-6, 0);
+  &.side {
+    .modal-structure {
+      transform: translateX(100%);
+    }
+  }
+
+  &:not(.side) {
+    .modal-structure {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+  }
+}

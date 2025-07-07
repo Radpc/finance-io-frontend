@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useForm } from "react-hook-form";
+import { AuthService } from "./services/auth";
+import { setSession } from "./storage/slices/session";
+import { useReduxDispatch, useRedux } from "./hooks/reduxHooks";
+import { Input } from "./components/Input";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface ILoginForm {
+  email: string;
+  password: string;
 }
 
-export default App
+function App() {
+  const dispatch = useReduxDispatch();
+  const accessToken = useRedux((state) => state.session.accessToken);
+
+  const loginForm = useForm<ILoginForm>({
+    defaultValues: { email: "", password: "" },
+  });
+
+  const onLogin = async () => {
+    const {
+      data: {
+        data: { user, jwt },
+      },
+    } = await AuthService.login(loginForm.getValues());
+    dispatch(setSession({ accessToken: jwt, user }));
+  };
+
+  return (
+    <div>
+      <h1>Login:</h1>
+      <label>
+        Email
+        <Input />
+      </label>
+
+      <label>
+        Senha
+        <input {...loginForm.register("password")} type="password" />
+      </label>
+
+      <button onClick={onLogin}>Login</button>
+      <hr />
+      <p>Access token: {accessToken ?? "No access token"}</p>
+    </div>
+  );
+}
+
+export default App;

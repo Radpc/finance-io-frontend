@@ -1,0 +1,144 @@
+@use 'src/scss/colors' as colors;
+@use 'src/scss/animations' as animations;
+
+$card-padding: 0.5rem;
+$box-size: 0.6rem;
+$card-border-width: 1px;
+$footer-bg: colors.$neutral-10;
+$card-radius: 0.6rem;
+
+.component-infohover {
+  display: inline-block;
+  position: relative;
+
+  .activator {
+    display: flex;
+  }
+}
+
+.component.hover-info {
+  color: colors.$primary-2;
+  display: block;
+  position: absolute;
+  z-index: 100000;
+  background: colors.$neutral-1;
+  padding: $card-padding;
+  border-radius: $card-radius;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid colors.$neutral-3;
+  width: max-content;
+  height: max-content;
+  font-size: 0.8rem;
+  font-weight: 400;
+  box-shadow: 5px 10px 5px 0px rgba(colors.$neutral-2, 0.1);
+  @include animations.jiggly(-1px, 2s);
+
+  &.hidden {
+    display: none;
+  }
+
+  .footer {
+    margin: -($card-padding);
+    padding: $card-padding;
+    margin-top: 0.5rem;
+    background-color: $footer-bg;
+    border-bottom-left-radius: $card-radius;
+    border-bottom-right-radius: $card-radius;
+    font-size: 0.7rem;
+    text-align: center;
+
+    span {
+      font-size: 0.7rem;
+    }
+  }
+
+  &:has(.footer)::after {
+    background-color: $footer-bg;
+  }
+
+  &::after {
+    content: '';
+    height: $box-size;
+    width: $box-size;
+    background-color: colors.$neutral-1;
+    border: $card-border-width solid colors.$neutral-3;
+
+    position: absolute;
+    z-index: -1;
+    transform: rotate(45deg);
+  }
+}
+
+.component.hover-info {
+  &.center {
+    translate: -50% 0 0;
+
+    &::after {
+      bottom: calc($box-size/-2 - $card-border-width);
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.upper-right {
+    &::after {
+      bottom: calc($box-size/-2 - $card-border-width);
+      left: 0;
+      right: 90%;
+      margin: auto;
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.upper-left {
+    &::after {
+      bottom: calc($box-size/-2 - $card-border-width);
+      left: 90%;
+      right: 0;
+      margin: auto;
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.bottom-center {
+    translate: -50% 0 0;
+
+    &::after {
+      top: calc($box-size/-2 - $card-border-width);
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+
+  &.bottom-right {
+    &::after {
+      top: calc($box-size/-2 - $card-border-width);
+      left: 0;
+      right: 90%;
+      margin: auto;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+
+  &.bottom-left {
+    &::after {
+      top: calc($box-size/-2 - $card-border-width);
+      left: 90%;
+      right: 0;
+      margin: auto;
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use 'src/scss/colors' as colors;
+.component-pagination {
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  .h-mirror {
+    transform: rotate(180deg);
+  }
+
+  span {
+    svg {
+      &.right {
+        transform: rotate(180deg);
+      }
+
+      path {
+        stroke: colors.$neutral-5;
+      }
+    }
+  }
+  .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    width: 2rem;
+    height: 2rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  .numbers {
+    display: flex;
+    align-items: center;
+    color: colors.$primary-2;
+    .square.selected {
+      background-color: colors.$primary-1;
+      color: colors.$neutral-2;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dots {
+      pointer-events: none;
+    }
+  }
+}
