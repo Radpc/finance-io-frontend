@@ -1,0 +1,96 @@
+import Pagination from "@/components/Pagination";
+import { CategoryService } from "@/services/category";
+import { useCallback, useMemo, useState } from "react";
+import useSWR from "swr";
+import {
+  ICategoryForm,
+  ModalCreateCategory,
+} from "./components/modalCreateCategory";
+import { Button } from "@/components/Button";
+
+interface IPagination {
+  page: number;
+  pageSize: number;
+}
+
+interface IFilters {
+  searchBy: string;
+}
+
+export const PageCategories = () => {
+  const [totalItems, setTotalItems] = useState(0);
+  const [pagination, setPagination] = useState<IPagination>({
+    page: 1,
+    pageSize: 10,
+  });
+  const [filters, setFilters] = useState<IFilters>({
+    searchBy: "",
+  });
+
+  const categoriesSWRKey = useMemo(() => {
+    return `/categories/${JSON.stringify(filters)}&${JSON.stringify(
+      pagination
+    )}`;
+  }, [filters, pagination]);
+
+  const fetchCategories = useCallback(
+    async (pagination: IPagination, filters: IFilters) => {
+      const { data } = await CategoryService.getCategories({
+        page: pagination.page,
+        pageSize: pagination.pageSize,
+      });
+
+      const res = data.data;
+      setTotalItems(res.pagination.total);
+
+      return res.items;
+    },
+    []
+  );
+
+  const categoriesSWR = useSWR(categoriesSWRKey, () =>
+    fetchCategories(pagination, filters)
+  );
+
+  const [modalCreate, setModalCreate] = useState<{ visible: boolean }>({
+    visible: false,
+  });
+
+  const onCreateCategory = async (form: ICategoryForm) => {
+    try {
+      await CategoryService.createCategory({ label: form.label });
+      setModalCreate({ visible: false });
+      categoriesSWR.mutate();
+    } catch (err) {}
+  };
+
+  return (
+    <div className="page categories">
+      <ModalCreateCategory
+        visible={modalCreate.visible}
+        onClose={() => setModalCreate({ visible: false })}
+        onSubmit={onCreateCategory}
+      />
+      <h1>Categories</h1>
+      <Button onClick={() => setModalCreate({ visible: true })}>
+        Create category
+      </Button>
+      <main>
+        {categoriesSWR.isLoading ? (
+          <div>Is loading</div>
+        ) : categoriesSWR.error || !categoriesSWR.data ? (
+          <div>Error</div>
+        ) : (
+          categoriesSWR.data.map((c) => (
+            <div key={"category_" + c.id}>{c.label}</div>
+          ))
+        )}
+      </main>
+      <Pagination
+        currentPage={pagination.page}
+        totalPages={Math.ceil(totalItems / pagination.pageSize)}
+        onPageClick={(page) => setPagination((l) => ({ ...l, page }))}
+      />
+    </div>
+  );
+};

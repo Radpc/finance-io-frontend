@@ -86,14 +86,6 @@ const Modal = forwardRef<ModalReference, ModalProps>(
             e.target === e.currentTarget ? innerOnClose() : null
           }
         >
-          <ModalConfirmExit
-            onConfirm={() => {
-              setConfirmExitModal(false);
-              onClose();
-            }}
-            onClose={() => setConfirmExitModal(false)}
-            visible={confirmExitModal}
-          />
           <div
             className={
               "modal-structure " +

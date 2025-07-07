@@ -4,7 +4,7 @@ import { User } from "../../types/apiTypes";
 interface SessionState {
   createdAt?: string;
   accessToken?: string;
-  user?: Partial<User>;
+  user?: User;
 }
 
 const initialState: SessionState = {};
@@ -18,7 +18,7 @@ export const sessionSlice = createSlice({
       {
         payload,
       }: PayloadAction<{
-        user: Partial<User>;
+        user: User;
         accessToken: string;
       }>
     ) => {

@@ -1,5 +1,5 @@
-@use 'src/scss/colors' as colors;
-@use 'src/scss/global';
+@use "/src/scss/colors" as colors;
+@use "/src/scss/global";
 
 $primary: colors.$primary-1;
 $primary-hovered: colors.$secondary-4;

@@ -1,15 +1,14 @@
+import { useReduxDispatch, useRedux } from "@/hooks/reduxHooks";
+import { AuthService } from "@/services/auth";
+import { setSession } from "@/storage/slices/session";
 import { useForm } from "react-hook-form";
-import { AuthService } from "./services/auth";
-import { setSession } from "./storage/slices/session";
-import { useReduxDispatch, useRedux } from "./hooks/reduxHooks";
-import { Input } from "./components/Input";
 
 interface ILoginForm {
   email: string;
   password: string;
 }
 
-function App() {
+export const PageLogin = () => {
   const dispatch = useReduxDispatch();
   const accessToken = useRedux((state) => state.session.accessToken);
 
@@ -27,23 +26,18 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="page login">
       <h1>Login:</h1>
       <label>
         Email
-        <Input />
+        <input {...loginForm.register("email")} />
       </label>
 
       <label>
         Senha
         <input {...loginForm.register("password")} type="password" />
       </label>
-
       <button onClick={onLogin}>Login</button>
-      <hr />
-      <p>Access token: {accessToken ?? "No access token"}</p>
     </div>
   );
-}
-
-export default App;
+};

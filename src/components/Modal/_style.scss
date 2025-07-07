@@ -1,5 +1,5 @@
-@use 'src/scss/colors' as colors;
-@use 'src/scss/variables' as variables;
+@use "/src/scss/colors" as colors;
+@use "/src/scss/variables" as variables;
 
 $slide-time: 0.2s;
 $modal-padding: variables.$modal-padding;
@@ -115,7 +115,8 @@ $modal-padding: variables.$modal-padding;
     .modal-structure {
       opacity: 1;
       transform: scale(1);
-      transition: $slide-time transform ease-in-out, $slide-time opacity ease-in-out;
+      transition: $slide-time transform ease-in-out,
+        $slide-time opacity ease-in-out;
     }
   }
 }

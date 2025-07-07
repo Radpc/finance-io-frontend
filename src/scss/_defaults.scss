@@ -1,5 +1,5 @@
-@use 'src/scss/colors' as colors;
-@use 'src/scss/variables' as variables;
+@use "@/scss/colors" as colors;
+@use "@/scss/variables" as variables;
 
 textarea {
   box-sizing: border-box;
@@ -54,23 +54,6 @@ textarea {
 .unavailable {
   opacity: 0.3;
   pointer-events: none;
-}
-
-.required {
-  &::after {
-    content: '*';
-  }
-}
-
-.card {
-  border-radius: 0.6rem;
-  background-color: colors.$neutral-1;
-  border: 1px solid colors.$neutral-4;
-  box-sizing: border-box;
-
-  &.padded {
-    padding: variables.$card-padding;
-  }
 }
 
 small.error {
@@ -276,80 +259,9 @@ table + footer {
   }
 }
 
-.go-back-page {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  width: fit-content;
-  text-decoration: none;
-  color: colors.$neutral-5;
-  font-size: 0.875rem;
-  font-weight: 600;
-
-  svg path {
-    fill: colors.$neutral-5;
-  }
-}
-
-.tag {
-  border-radius: 0.75rem;
-  width: max-content;
-  padding: 0.3rem 0.75rem;
-  text-align: center;
-  font-size: 0.625rem;
-  font-weight: 600;
-  background: rgba($color: colors.$neutral-8, $alpha: 0.15);
-  color: colors.$primary-2;
-
-  &.Prioridade {
-    background: rgba($color: colors.$secondary-2, $alpha: 0.15);
-    color: colors.$secondary-2;
-  }
-  &.Retentativa {
-    background: rgba($color: colors.$secondary-13, $alpha: 0.15);
-    color: colors.$secondary-13;
-  }
-  &.Atrasado {
-    background: rgba($color: colors.$secondary-1, $alpha: 0.15);
-    color: colors.$secondary-1;
-  }
-  &.tags-6 {
-    background: rgba(colors.$tags-6, 0.15);
-    color: colors.$tags-6;
-  }
-  &.tags-7 {
-    background: rgba(colors.$tags-7, 0.15);
-    color: colors.$tags-7;
-  }
-  &.tags-8 {
-    background: rgba(colors.$tags-8, 0.15);
-    color: colors.$tags-8;
-  }
-  &.tags-3 {
-    background: rgba(colors.$tags-3, 0.15);
-    color: colors.$tags-3;
-  }
-  &.tags-9 {
-    background: rgba(colors.$tags-9, 0.15);
-    color: colors.$tags-9;
-  }
-  &.tags-10 {
-    background: rgba(colors.$tags-10, 0.15);
-    color: colors.$tags-10;
-  }
-  &.tags-11 {
-    background: rgba(colors.$tags-11, 0.15);
-    color: colors.$tags-11;
-  }
-  &.tags-4 {
-    background: rgba(colors.$tags-4, 0.15);
-    color: colors.$tags-4;
-  }
-}
-
 $checkbox-size: 13px;
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   position: relative;
   cursor: pointer;
   -webkit-appearance: none;
@@ -373,7 +285,7 @@ input[type='checkbox'] {
   }
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     height: $checkbox-size;
@@ -390,7 +302,7 @@ input[type='checkbox'] {
     &::before {
       background-color: colors.$primary-1;
       border-color: colors.$primary-1;
-      background-image: url('/src/assets/img/icons/Checked.svg');
+      background-image: url("/src/assets/img/icons/Checked.svg");
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -400,38 +312,4 @@ input[type='checkbox'] {
 
 .clickable {
   cursor: pointer;
-}
-
-.Toastify .Toastify__toast-container {
-  z-index: 100000;
-}
-
-img {
-  object-fit: cover;
-}
-
-progress {
-  display: block;
-  width: 100%;
-  height: 0.4375rem;
-  margin-top: 0.62rem;
-  border-radius: 0.625rem;
-
-  &::-webkit-progress-bar {
-    border: 0;
-    height: 0.4375rem;
-    border-radius: 0.625rem;
-    background-color: colors.$neutral-3;
-  }
-  &::-webkit-progress-value {
-    border: 0;
-    height: 0.4375rem;
-    border-radius: 0.625rem;
-    background-color: colors.$primary-1;
-  }
-  &::-moz-progress-bar {
-    border: 0;
-    height: 0.4375rem;
-    border-radius: 0.625rem;
-  }
 }

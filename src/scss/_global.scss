@@ -1,14 +1,14 @@
 // Reset
-@import '/src/scss/reset';
+@use "/src/scss/reset";
 
 // Font
-@import '/src/assets/fonts/montserrat/font.css';
+@use "/src/assets/fonts/montserrat/font.css";
 
 // Style Guide
-@import './styleGuide';
+@use "./styleGuide";
 
 // Defaults
-@import './defaults';
+@use "./defaults";
 
 body {
   height: 100vh;

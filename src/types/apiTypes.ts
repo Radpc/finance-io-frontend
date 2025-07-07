@@ -32,4 +32,15 @@ export interface Payment extends DatabaseDates {
   observation?: string;
   status: PaymentStatus;
   paymentDate: string;
+  category?: Category;
+  tags?: Tag[];
+}
+
+export interface Category extends DatabaseDates {
+  id: number;
+  label: string;
+}
+
+export interface Tag extends DatabaseDates {
+  id: number;
 }

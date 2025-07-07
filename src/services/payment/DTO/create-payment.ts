@@ -1,3 +1,9 @@
 import { Payment } from "../../../types/apiTypes";
 
-export type ICreatePaymentDTO = Omit<Payment, "id" | "createdAt" | "updatedAt">;
+type ExtraCreatePaymentDTO = { tagIds?: number[]; categoryId: number };
+
+export type ICreatePaymentDTO = Omit<
+  Payment,
+  "id" | "createdAt" | "updatedAt"
+> &
+  ExtraCreatePaymentDTO;
