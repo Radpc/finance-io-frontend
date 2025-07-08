@@ -2,6 +2,7 @@ import { useRedux } from "@/hooks/reduxHooks";
 import { LayoutDashboard } from "@/layout/dashboard";
 import { PageLogin } from "@/pages/auth/login";
 import { PageCategories } from "@/pages/dashboard/categories";
+import { PagePayments } from "@/pages/dashboard/payments";
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
@@ -13,6 +14,7 @@ export const AppRouter = () => {
           <Route path="login" element={<PageLogin />} />
         </Route>
         <Route path="dashboard" element={<LayoutDashboard />}>
+          <Route path="payments" element={<PagePayments />} />
           <Route path="categories" element={<PageCategories />} />
         </Route>
         <Route path="*" element={<DefaultResolver />} />

@@ -76,15 +76,32 @@ export const PageCategories = () => {
         Create category
       </Button>
       <main>
-        {categoriesSWR.isLoading ? (
-          <div>Is loading</div>
-        ) : categoriesSWR.error || !categoriesSWR.data ? (
-          <div>Error</div>
-        ) : (
-          categoriesSWR.data.map((c) => (
-            <div key={"category_" + c.id}>{c.label}</div>
-          ))
-        )}
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Label</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categoriesSWR.isLoading ? (
+              <tr>Is loading</tr>
+            ) : categoriesSWR.error || !categoriesSWR.data ? (
+              <tr>Error</tr>
+            ) : (
+              categoriesSWR.data.map((c) => (
+                <tr key={"category_" + c.id}>
+                  <td>#{c.id}</td>
+                  <td>{c.label}</td>
+                  <td>{c.createdAt}</td>
+                  <td>Actions</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </main>
       <Pagination
         currentPage={pagination.page}

@@ -1,6 +1,10 @@
 .component.sidebar {
-  font-size: 2rem;
   padding: 1rem;
   background-color: orange;
   width: 10rem;
+
+  > nav {
+    display: flex;
+    flex-direction: column;
+  }
 }

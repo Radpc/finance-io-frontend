@@ -32,6 +32,7 @@ export interface Payment extends DatabaseDates {
   observation?: string;
   status: PaymentStatus;
   paymentDate: string;
+  paymentMethod: PaymentMethod;
   category?: Category;
   tags?: Tag[];
 }

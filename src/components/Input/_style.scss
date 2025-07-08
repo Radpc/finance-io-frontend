@@ -1,5 +1,5 @@
-@use '/src/scss/colors' as colors;
-@use '/src/scss/variables' as variables;
+@use "/src/scss/colors" as colors;
+@use "/src/scss/variables" as variables;
 $default-append-size: 1.8rem;
 $default-icon-size: 1.8rem;
 
@@ -15,7 +15,11 @@ $background-color: colors.$neutral-1;
     left: 0.8rem;
     transform: translateY(-50%);
     max-width: 90%;
-    background: linear-gradient(0deg, $background-color (calc(50%)), transparent 50%);
+    background: linear-gradient(
+      0deg,
+      $background-color (calc(50%)),
+      transparent 50%
+    );
     font-weight: 600;
     font-size: 0.75rem;
     padding: 0 0.2rem;

@@ -1,10 +1,19 @@
+import { Payment } from "@/types/apiTypes";
 import { API, getAuthorizedHeader } from "../../config/api";
 import { ICreatePaymentDTO } from "./DTO/create-payment";
+import { ControllerResponse, PaginatedResponse } from "@/types/apiResponses";
+
+interface IListPaymentsParams {
+  page: number;
+  pageSize: number;
+}
 
 export class PaymentService {
-  static getPayments() {
+  static getPayments(params: IListPaymentsParams) {
     const url = "/payments";
-    return API.get(url, { headers: getAuthorizedHeader() });
+    type Response = ControllerResponse<PaginatedResponse<Payment>>;
+
+    return API.get<Response>(url, { headers: getAuthorizedHeader(), params });
   }
 
   static createPayment(payload: ICreatePaymentDTO) {

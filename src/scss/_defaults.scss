@@ -58,12 +58,9 @@ textarea {
 
 small.error {
   color: colors.$error;
-  font-size: 0.7rem;
   display: block;
   height: 1rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.1rem;
-  font-weight: 500;
+  margin-bottom: 0.4rem;
 }
 
 .hidden {
@@ -83,13 +80,12 @@ table {
     background-color: colors.$neutral-9;
     > tr > th {
       text-align: start;
-      padding-block: 1rem;
-      padding: 0 16px;
-      height: 59px;
+      padding-block: 0.2rem;
+      box-sizing: border-box;
+      height: 2.5rem;
       border-bottom: 1px solid colors.$neutral-4;
       border-top: 1px solid colors.$neutral-4;
       vertical-align: middle;
-
       &:not(:first-child) {
         padding-right: $padding-between;
       }
@@ -104,7 +100,6 @@ table {
     background-color: colors.$neutral-1;
     > tr {
       border-bottom: 1px solid colors.$neutral-2;
-      height: 59px;
       position: relative;
       :deep(.loading-td) {
         margin-right: 1rem;
@@ -124,7 +119,7 @@ table {
       }
 
       td {
-        height: 3rem;
+        height: 2rem;
         vertical-align: middle;
         position: relative;
 
